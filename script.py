@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import url
 import subprocess
+from datetime import datetime
 
 # Your Python script code goes here
 
@@ -16,6 +17,11 @@ response = requests.get(url)
 html_content = response.content
 
 soup = BeautifulSoup(html_content, "html.parser")
+
+# Format date as "dayth Month" (e.g., 3th Oct)
+current_date = datetime.now().strftime("%dS %b")
+
+
 
  # Scrap all <div class="card">
 cards = soup.find_all("div", class_="card")
@@ -36,7 +42,7 @@ with open("index.html", "w", encoding="utf-8") as file:
         <body>
             <p class='title'>Nordschleife Leaderboard</p>
             <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
-            <p class='update'>Last Update: 3th October</p>
+            <p class='update'>Last Update: {current_date} </p>
             <p class='server-link'><a href='https://acstuff.ru/s/q:race/online/join?httpPort=9649&ip=148.251.236.163'> Play Here</a></p>
             <table id="leaderboardTable">
                 <tr><th>Ranking Position</th><th>Pilot Name</th><th>Car Name</th><th>Lap Time</th></tr>
