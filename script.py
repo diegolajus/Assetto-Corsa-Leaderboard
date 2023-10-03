@@ -33,10 +33,10 @@ with open("index.html", "w", encoding="utf-8") as file:
         <head>
             <link rel='stylesheet' href='styles.css'>
             <style>
-                tr:nth-child(1) { background-color: gold; }
-                tr:nth-child(2) { background-color: silver; }
-                tr:nth-child(3) { background-color: #cd7f32; /* Bronze color */ }
-                tr:nth-child(even) { background-color: #f9f9f9; }
+                tr:nth-child(1) {{ background-color: gold; }}
+                tr:nth-child(2) {{ background-color: silver; }}
+                tr:nth-child(3) {{ background-color: #cd7f32; /* Bronze color */ }}
+                tr:nth-child(even) {{ background-color: #f9f9f9; }}
             </style>
         </head>
         <body>
