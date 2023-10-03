@@ -6,7 +6,6 @@ def get_urls():
     url = 'https://wastedtime.emperorservers.com/results'
     response = requests.get(url)
     html_content = response.content
-
     soup = BeautifulSoup(html_content, "html.parser")
 
     # Find all <tr> elements with class "row-link"

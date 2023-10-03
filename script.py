@@ -19,7 +19,7 @@ html_content = response.content
 soup = BeautifulSoup(html_content, "html.parser")
 
 # Format date as "dayth Month" (e.g., 3th Oct)
-current_date = datetime.now().strftime("%dS %b")
+current_date = datetime.now().strftime("%dth %b")
 
 
 
