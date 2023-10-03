@@ -82,7 +82,4 @@ with open("index.html", "w", encoding="utf-8") as file:
     file.write("</script>")
     file.write("</body></html>")
 
-print("--- ITEMS WERE ADDED ---")
-
-subprocess.run(["bash", "automate_git.sh"])
-
+print("---- ITEMS WERE ADDED ----")
