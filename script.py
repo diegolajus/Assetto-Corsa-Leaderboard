@@ -1,8 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
+import url
+import subprocess
+
+# Your Python script code goes here
+
+# After your script finishes running, execute the Bash script
+subprocess.run(["bash", "automate_git.sh"])
+
+url_extraction = url.get_urls()
 
 # Obtén el contenido de la página web
-url = 'https://wastedtime.emperorservers.com/results/2023_9_28_2_2_PRACTICE-combined'
+url = url_extraction[0]
 response = requests.get(url)
 html_content = response.content
 
@@ -27,7 +36,7 @@ with open("index.html", "w", encoding="utf-8") as file:
         <body>
             <p class='title'>Nordschleife Leaderboard</p>
             <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
-            <p class='update'>Last Update: 27th September</p>
+            <p class='update'>Last Update: 3th October</p>
             <p class='server-link'><a href='https://acstuff.ru/s/q:race/online/join?httpPort=9649&ip=148.251.236.163'> Play Here</a></p>
             <table id="leaderboardTable">
                 <tr><th>Ranking Position</th><th>Pilot Name</th><th>Car Name</th><th>Lap Time</th></tr>
@@ -74,3 +83,6 @@ with open("index.html", "w", encoding="utf-8") as file:
     file.write("</body></html>")
 
 print("Items were added into index.html")
+
+subprocess.run(["bash", "automate_git.sh"])
+
