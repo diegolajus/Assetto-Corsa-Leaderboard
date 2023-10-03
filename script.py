@@ -28,7 +28,7 @@ cards = soup.find_all("div", class_="card")
 
 with open("index.html", "w", encoding="utf-8") as file:
     # Starting HTML FILE
-    file.write("""
+    file.write(f"""
     <html>
         <head>
             <link rel='stylesheet' href='styles.css'>
