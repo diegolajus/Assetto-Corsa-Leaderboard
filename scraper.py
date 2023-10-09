@@ -27,13 +27,13 @@ class LeaderboardScraper:
         if pilot_name:
             return f"<tr><td>{ranking_position}</td><td id=f{pilot_name}>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
         if lap_time == "Invalid lap":
-            return f"<tr><td>{ranking_position}</td><td>{pilot_name}</td><td>{car_name}</td><td id='invalid-lap'>{lap_time}</td></tr>"
+            return f"<tr><td>{ranking_position}</td><td id=f{pilot_name}>{pilot_name}</td><td>{car_name}</td><td id='invalid-lap'>{lap_time}</td></tr>"
         if i == 1:
-            return f"<tr id='gold'><td>{ranking_position}</td><td>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
+            return f"<tr id='gold'><td>{ranking_position}</td><td id=f{pilot_name}>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
         elif i == 2:
-            return f"<tr id='silver'><td>{ranking_position}</td><td>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
+            return f"<tr id='silver'><td>{ranking_position}</td><td id=f{pilot_name}>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
         elif i == 3:
-            return f"<tr id='bronze'><td>{ranking_position}</td><td>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
+            return f"<tr id='bronze'><td>{ranking_position}</td><td id=f{pilot_name}>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
         else:
             return f"<tr><td>{ranking_position}</td><td>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
 
