@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Your Python script code goes here
-
 # Get current date and format it as "dayth Month" (e.g., 3th Oct)
 current_date=$(date +"%dth %b")
 

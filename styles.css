@@ -61,11 +61,9 @@ tr:hover {
 }
 
 .server-link a{
-    position: absolute;
+    /* position: absolute; */
     text-decoration: none;
     color: inherit;
-    left: 200px;
-    top: 50px;
     border: 1px solid black;
     border-radius:10px;
     padding: 8px;
