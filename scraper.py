@@ -24,6 +24,10 @@ class LeaderboardScraper:
         return ranking_position, pilot_name, car_name, lap_time
     
     def generate_table_row(self, ranking_position, pilot_name, car_name, lap_time, i):
+        if lap_time == "Invalid lap":
+            class_name = "invalid-lap"
+        else:
+            class_name = ""
         if i == 1:
             return f"<tr id='gold'><td>{ranking_position}</td><td>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
         elif i == 2:
