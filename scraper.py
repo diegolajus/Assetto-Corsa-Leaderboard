@@ -35,11 +35,27 @@ class LeaderboardScraper:
         else:
             return f"<tr><td>{ranking_position}</td><td>{pilot_name}</td><td>{car_name}</td><td>{lap_time}</td></tr>"
 
+
+    def get_used_cars(self, cards):
+        used_cars = set()
+        for card in cards[1:]:
+            _, _, car_name, lap_time = self.extract_data_from_card(card)
+            if lap_time != "Invalid lap":
+                used_cars.add(car_name)
+        return list(used_cars)
+
+    def generate_filter_options(self, used_cars):
+        options = ""
+        for car in used_cars:
+            options += f"<option value='{car}'>{car}</option>"
+        return options
+
     def scrape_leaderboard(self):
         html_content = self.get_html_content()
         soup = BeautifulSoup(html_content, "html.parser")
         current_date = datetime.now().strftime("%dth %b")
         cards = soup.find_all("div", class_="card")
+        used_cars = self.get_used_cars(cards)
 
         with open(config.FILE_NAME, "w", encoding="utf-8") as file:
             # Starting HTML FILE
@@ -49,13 +65,31 @@ class LeaderboardScraper:
                     <link rel='stylesheet' href='styles.css'>
                 </head>
                 <body>
-                    <p class='title'>Nordschleife Leaderboard</p>
-                    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
+                    <p class='title'>Nordschleife Leaderboard</p> 
                     <p class='update'>Last Update: {current_date} </p>
-                    <p class='server-link'><a href='https://acstuff.ru/s/q:race/online/join?httpPort=9649&ip=148.251.236.163'> Play Here</a></p>
+                <div class='header-container'>
+                    <div>
+                        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
+                    </div>
+                    <div>
+                        <select id="carFilter" onchange="filterByCar()">
+                            <option value="">All Cars</option>
+                            {self.generate_filter_options(used_cars)}
+                        </select>
+                    </div>
+                    <div>
+                        <p class='server-link'><a href='https://acstuff.ru/s/q:race/online/join?httpPort=9649&ip=148.251.236.163' target='_blank'> Play </a></p>
+                    </div>
+                    <div>
+                        <a href='https://discord.gg/4SGcjFGS' target='_blank'>
+                            <img src='https://cdn-icons-png.flaticon.com/512/2111/2111370.png' alt='Join our Discord server'>
+                        </a>
+                    </div>
+                </div>                      
                     <table id="leaderboardTable">
                         <tr><th>Ranking Position</th><th>Pilot Name</th><th>Car Name</th><th>Lap Time</th></tr>
             """)
+
             for i, card in enumerate(cards):
                 if i != 0:
                     ranking_position, pilot_name, car_name, lap_time = self.extract_data_from_card(card)
@@ -76,6 +110,21 @@ class LeaderboardScraper:
             file.write("if (td) {")
             file.write("txtValue = td.textContent || td.innerText;")
             file.write("if (txtValue.toUpperCase().indexOf(filter) > -1) {")
+            file.write("tr[i].style.display = '';}")
+            file.write("else {tr[i].style.display = 'none';}")
+            file.write("}}}")
+
+            file.write("function filterByCar() {")
+            file.write("var input, filter, table, tr, td, i, txtValue;")
+            file.write("input = document.getElementById('carFilter');")
+            file.write("filter = input.value.toUpperCase();")
+            file.write("table = document.getElementById('leaderboardTable');")
+            file.write("tr = table.getElementsByTagName('tr');")
+            file.write("for (i = 1; i < tr.length; i++) {")
+            file.write("td = tr[i].getElementsByTagName('td')[2];")
+            file.write("if (td) {")
+            file.write("txtValue = td.textContent || td.innerText;")
+            file.write("if (filter === '' || txtValue.toUpperCase() === filter) {")
             file.write("tr[i].style.display = '';}")
             file.write("else {tr[i].style.display = 'none';}")
             file.write("}}}")

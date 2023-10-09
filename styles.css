@@ -44,7 +44,7 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-.invalid-lap {
+#invalid-lap {
     color: #FF0000; /* Change the color for invalid laps */
 }
 #gold{
@@ -55,6 +55,9 @@ tr:hover {
 }
 #bronze{
     background-color: #c5a17e;
+}
+#bronze td:nth-child(4), #silver td:nth-child(4),#gold td:nth-child(4){
+    font-weight: bolder;
 }
 .update{
     color: grey;
@@ -73,3 +76,48 @@ tr:hover {
     background-color: rgb(196, 108, 108);
     color: white;
 }
+
+.header-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.header-container div{
+    margin: 8px;
+}
+.header-container img{
+    height: 40px;
+}
+
+#carFilter{
+    text-align: center;
+    width: 150px;
+}
+input{
+    text-align: center;
+    width: 150px;
+}
+/* 
+               <div class='header-container'>
+                    <div>
+                        <select id="carFilter" onchange="filterByCar()">
+                            <option value="">All Cars</option>
+                            {self.generate_filter_options(used_cars)}
+                        </select>
+                    </div>
+                    <div>
+                        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
+                    </div>
+                    <div>
+                        <p class='update'>Last Update: {current_date} </p>
+                    </div>
+                    <div>
+                        <p class='server-link'><a href='https://acstuff.ru/s/q:race/online/join?httpPort=9649&ip=148.251.236.163'> Play Here</a></p>
+                    </div>
+                    <div>
+                        <a href='YOUR_DISCORD_INVITE_LINK' target='_blank'>
+                            <img src='https://cdn-icons-png.flaticon.com/512/2111/2111370.png' alt='Join our Discord server'>
+                        </a>
+                    </div>
+                </div> 
